@@ -7,56 +7,37 @@ import {
 import "../styles/custom-styles.css";
 
 import { products } from "../data/products";
-import { useShoppingCart } from "../hooks/useShoppingCart";
+
+const product = products[0];
 
 export const ShoppingPage = () => {
-  const { shoppingCart, onProductCountChange } = useShoppingCart();
-
   return (
     <div>
       <h1>Shopping Store</h1>
       <hr />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
+      <ProductCard
+        key={product.id}
+        product={product}
+        className="bg-dark txt-bold"
+        initialValues={{
+          count: 4,
+          maxCount: 10,
         }}
       >
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            className="bg-dark txt-bold"
-            value={shoppingCart[product.id]?.count || 0}
-            onChange={onProductCountChange}
-          >
+        {({reset, increaseBy, count}) => (
+          <>
             <ProductImage className="custom-image" />
             <ProductTitle className="txt-bold" />
             <ProductButtons className="custom-buttons" />
-          </ProductCard>
-        ))}
-      </div>
 
-      <div className="shopping-cart">
-        {Object.entries(shoppingCart).map(([key, product]) => {
-          return (
-            <ProductCard
-              key={key}
-              product={product}
-              className="bg-dark txt-bold"
-              style={{
-                width: "100px",
-              }}
-              onChange={onProductCountChange}
-              value={product.count}
-            >
-              <ProductImage className="custom-image" />
-              <ProductButtons className="custom-buttons" />
-            </ProductCard>
-          );
-        })}
-      </div>
+            <button onClick={reset}>Reset</button>
+            <button onClick={() => increaseBy(-2)}>-2</button>
+            <button onClick={() => increaseBy(+2)}>+2</button>
+            <span>{count}</span>
+            
+          </>
+        )}
+      </ProductCard>
     </div>
   );
 };
