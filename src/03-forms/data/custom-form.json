@@ -1,0 +1,65 @@
+[
+    {
+        "type": "input",
+        "name": "firstName",
+        "placeholder": "John",
+        "label": "First Name",
+        "value": "",
+        "validations": [
+            {
+                "type": "required",
+                "message": "First Name is required"
+            },
+            {
+                "type": "min",
+                "value": 3
+            }
+        ]
+    },
+    {
+        "type": "input",
+        "name": "lastName",
+        "placeholder": "Doe",
+        "label": "Last Name",
+        "value": "",
+        "validations": [
+            {
+                "type": "required",
+                "message": "Last Name is required"
+            }
+        ]
+    },
+    {
+        "type": "email",
+        "name": "Email",
+        "placeholder": "johndoe@google.com",
+        "label": "Email",
+        "value": "",
+        "validations": [
+            {
+                "type": "required",
+                "message": "Email is required"
+            },
+            {
+                "type": "email",
+                "message": "Invalid Email"
+            }
+        ]
+    },    
+    {
+        "type": "select",
+        "name": "favoriteColor",
+        "label": "Favorite Color",
+        "value": "",
+        "options": [
+            "Red", "Black", "Yellow"
+        ],
+        "validations": [
+            {
+                "type": "required",
+                "message": "Favorite Color is required"
+            }
+        ]
+    }
+    
+]
